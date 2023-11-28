@@ -30,15 +30,20 @@ server {
 
         server_name _;
 
-        location /redirect_me {
+        location = /redirect_me {
                 return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
         }
 
-        location / {
+        location = / {
                 try_files /index.html =404;
         }
 
         error_page 404 /404.html;
+
+	location / {
+		return 404;
+	}
+
         location = /404.html {
                 root /var/www/html;
                 internal;
